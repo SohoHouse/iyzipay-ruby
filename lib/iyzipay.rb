@@ -9,7 +9,7 @@ module Iyzipay
 end
 
 require_relative 'iyzipay/http_client'
-require_relative 'iyzipay/pki_builder'
 require_relative 'iyzipay/iyzipay_resource'
 require_relative 'iyzipay/model'
 require_relative 'iyzipay/options'
+require_relative 'iyzipay/signer'
