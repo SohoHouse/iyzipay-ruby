@@ -26,8 +26,12 @@ module Iyzipay
       response.from_json(json_result)
     end
 
-    def post_request(path, request, options)
-      HttpClient.post("#{options.base_url}#{path}", get_http_header(request.to_json, options, path), request.to_json)
+    def post_request(path, request, options, signature_fields = {})
+      url = "#{options.base_url}#{path}"
+      headers = get_http_header(request.to_json, options, path)
+      response = HttpClient.post(url, headers, request.to_json)
+      Iyzipay::SignatureChecker.new(response, options, signature_fields).verify if signature_fields.any? # raise error if signature is invalid
+      response
     end
 
     def put_request(path, request, options)
