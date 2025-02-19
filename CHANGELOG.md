@@ -1,3 +1,6 @@
+# 1.2.0 (2024-12-31)
+- Added payments API response's signature validation.
+
 # 1.1.0 (2024-11-22)
 - Changed signature algorithm to `HMAC SHA256` to meet Iyzipay API requirements.
 - Removed `pki_string` generation as obsolete.
