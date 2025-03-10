@@ -3,7 +3,14 @@ module Iyzipay
 
     attr_reader :response, :iyzipay_options, :fields
 
-    class ::Iyzipay::SignatureError < StandardError; end
+    class ::Iyzipay::SignatureError < StandardError
+      def initialize(message, response)
+        super(message)
+        @response = response
+      end
+
+      attr_reader :response
+    end
 
     def initialize(response, iyzipay_options, fields)
       @response = JSON::parse(response) rescue {}
@@ -34,7 +41,7 @@ module Iyzipay
 
     def verify
       return unless status_success? # skip signature check if status is not success
-      raise Iyzipay::SignatureError.new('Signature is invalid') unless check_signature
+      raise Iyzipay::SignatureError.new('Signature is invalid', response) unless check_signature
     end
   end
 end
