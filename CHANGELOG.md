@@ -1,3 +1,6 @@
+# 1.2.1 (2025-03-10)
+- Added handling for responses inside a failed signature exception.
+
 # 1.2.0 (2024-12-31)
 - Added payments API response's signature validation.
 
