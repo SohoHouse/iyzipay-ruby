@@ -27,7 +27,10 @@ module Iyzipay
     end
 
     def extract_field(field)
-      return response['price'].to_s.sub(/0+$/, '').chomp('.') if field == 'price'
+      return response['price'].to_s.sub(/(\.\d*?)0+$/, '\1').chomp('.') if field == 'price'
+      return response['paidPrice'].to_s.sub(/(\.\d*?)0+$/, '\1').chomp('.') if field == 'paidPrice'
+      return '' if response[field] == 'null'
+
       response[field].to_s
     end
 
