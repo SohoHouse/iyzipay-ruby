@@ -1,3 +1,6 @@
+# 1.2.2 (2025-03-25)
+- Added `paidPrice` processing for signature check in same way as `price`. 
+
 # 1.2.1 (2025-03-10)
 - Added handling for responses inside a failed signature exception.
 
